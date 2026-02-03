@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/boxty123/argocd-demo.git
     targetRevision: HEAD
-    path: environments/prod
+    path: demo-app/environments/prod
     directory:
       recurse: true
       exclude: 'root-app.yaml'
