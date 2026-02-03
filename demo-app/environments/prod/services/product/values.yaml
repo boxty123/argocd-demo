@@ -7,4 +7,4 @@ autoscaling:
 
 image:
   repository: 900808296075.dkr.ecr.ap-northeast-2.amazonaws.com/goorm-product
-  tag: "11-ea79334a"
+  tag: "16-a2b0e838"
