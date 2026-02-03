@@ -12,7 +12,7 @@ spec:
     path: demo-app/charts/demo-app
     helm:
       valueFiles:
-        - ../../values/order.yaml
+      - ../../environments/prod/values/order.yaml
 
   destination:
     server: https://kubernetes.default.svc
