@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cart-service-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/GroomCloudTeam2/courm-infra-repo.git"
+    path: demo-app/charts/demo-app
+    targetRevision: HEAD
+    helm:
+      values: |
+        replicaCount: 2
+        
+        autoscaling:
+          enabled: true
+          minReplicas: 2
+          maxReplicas: 4
+        
+        image:
+          repository: 900808296075.dkr.ecr.ap-northeast-2.amazonaws.com/goorm-cart
+          tag: "11-ea79334a"
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
