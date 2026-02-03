@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: order-service-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/boxty123/argocd-demo.git
+    path: demo-app/charts/demo-app
+    targetRevision: HEAD
+    helm:
+      valuesFiles:
+        - ../../environments/prod/services/order/values.yaml # char.yaml 기준 경로
+
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
