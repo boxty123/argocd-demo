@@ -1,22 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cart-service-prod
+  name: cart
   namespace: argocd
 spec:
   project: default
+
   source:
     repoURL: https://github.com/boxty123/argocd-demo.git
-    path: demo-app/charts/demo-app
     targetRevision: HEAD
+    path: demo-app/charts/demo-app
     helm:
-      valuesFiles:
-        - ../../environments/prod/services/user/values.yaml # char.yaml 기준 경로
-
+      valueFiles:
+        - ../../environments/prod/services/order/values.yaml
 
   destination:
     server: https://kubernetes.default.svc
     namespace: prod
+
   syncPolicy:
     automated:
       prune: true
